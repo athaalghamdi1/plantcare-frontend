@@ -1,19 +1,21 @@
-// src/components/Navbar.jsx
-import React from 'react';
-import { Link } from 'react-router-dom';
-import './Navbar.css';
+// Navbar.jsx
+import { useState } from 'react'
+import ProfileDrawer from './ProfileDrawer'
+import { Link } from 'react-router-dom'
 
-const Navbar = () => {
+function Navbar() {
+  const [showProfile, setShowProfile] = useState(false)
+
   return (
-    <nav className="navbar">
-      <div className="navbar-links">
-        <Link to="/" className="navbar-link">Home</Link>
-        <Link to="/welcome" className="navbar-link">Welcome</Link>
-        <Link to="/plants" className="navbar-link">All Plants</Link>
-        <Link to="/profile" className="navbar-link">Profile</Link>
+    <nav className="flex justify-between p-4 bg-green-100">
+      <div className="flex gap-4">
+        <Link to="/home">Home</Link>
+        <Link to="/plants">My Plants</Link>
       </div>
+      <button onClick={() => setShowProfile(!showProfile)}>Profile</button>
+      {showProfile && <ProfileDrawer />}
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar

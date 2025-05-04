@@ -1,0 +1,57 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.welcome-container, .auth-container, .home-container, .plants-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.app-name {
+  font-size: 2.5rem;
+  margin-top: 20%;
+}
+
+.options button {
+  margin: 0.5rem;
+  padding: 0.75rem 1.5rem;
+}
+
+.auth-container input {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+}
+
+.auth-container button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.home-container, .plants-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.profile-sidebar {
+  width: 250px;
+  padding: 1rem;
+  background-color: #f3f3f3;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.main-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.plant-card {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin: 1rem 0;
+}

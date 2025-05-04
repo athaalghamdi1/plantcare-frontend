@@ -1,32 +1,29 @@
-// pages/HomePage/index.jsx
-import React, { useEffect, useState } from 'react';
-import PlantForm from '../../components/PlantForm';
-import { getPlants } from '../../utilities/api';
+import "./style.css";
+import { useState } from "react";
+// import ProfileSidebar from "../components/ProfileSidebar";
+import ProfileDrawer from "../../components/ProfileDrawer/ProfileDrawer";
 
-const HomePage = () => {
-  const [plants, setPlants] = useState([]);
+export default function Home() {
+  const [image, setImage] = useState(null);
 
-  useEffect(() => {
-    const fetchPlants = async () => {
-      const fetchedPlants = await getPlants();
-      setPlants(fetchedPlants);
-    };
-    fetchPlants();
-  }, []);
+  const handleUpload = (e) => {
+    const file = e.target.files[0];
+    setImage(URL.createObjectURL(file));
+  };
 
   return (
-    <div>
-      <h1>Welcome to PlantCare</h1>
-      <PlantForm />
-      <ul>
-        {plants.map(plant => (
-          <li key={plant.id}>
-            <strong>{plant.name}</strong> — {plant.care_instructions}
-          </li>
-        ))}
-      </ul>
+    <div className="home-container">
+      <ProfileDrawer />
+      <div className="main-content">
+        <h2>Welcome to PlantCARE 🌿</h2>
+        <input type="file" onChange={handleUpload} />
+        {image && (
+          <div>
+            <img src={image} alt="Uploaded Plant" style={{ width: "200px", marginTop: "1rem" }} />
+            <p>📋 Recommendations will appear here (from AI model)</p>
+          </div>
+        )}
+      </div>
     </div>
   );
-};
-
-export default HomePage;
+}
