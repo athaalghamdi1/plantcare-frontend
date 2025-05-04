@@ -1,0 +1,16 @@
+/* src/pages/ProfilePage.css */
+.profile-options {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.profile-options div {
+  margin-bottom: 10px;
+}
+
+.profile-options select, .profile-options button {
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+}
