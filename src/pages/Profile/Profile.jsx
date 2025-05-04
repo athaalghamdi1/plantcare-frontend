@@ -7,16 +7,13 @@ const Profile = () => {
 
   const handleLanguageChange = (e) => {
     setLanguage(e.target.value);
-    // هنا يمكنك إضافة المنطق لتغيير اللغة في تطبيقك
   };
 
   const toggleDarkMode = () => {
     setIsDarkMode(!isDarkMode);
-    // هنا يمكنك إضافة المنطق لتغيير الوضع (داكن/فاتح)
   };
 
   const handleLogout = () => {
-    // هنا يمكنك إضافة منطق تسجيل الخروج
     console.log('User logged out');
   };
 
