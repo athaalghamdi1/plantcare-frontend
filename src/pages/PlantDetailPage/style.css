@@ -1,0 +1,149 @@
+
+.detail-plant-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+ 
+  .detail-plant-img img {
+    max-width: 250px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+ 
+  .plant-details {
+    max-width: 60%;
+    margin-left: 20px;
+  }
+  
+  
+  .plant-details h1 {
+    font-size: 2rem;
+    color: #4CAF50;
+    margin-bottom: 10px;
+  }
+  
+  
+  .plant-details h2 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+ 
+  .plant-details p {
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+  
+  .plant-actions {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .plant-actions .btn {
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s ease;
+  }
+  
+  .plant-actions .btn.warn {
+    background-color: #ffa500;
+  }
+  
+  .plant-actions .btn.danger {
+    background-color: #ff6347;
+  }
+  
+  .plant-actions .btn:hover {
+    opacity: 0.8;
+  }
+  
+  .plant-recommendations-container {
+    margin-top: 30px;
+  }
+  
+  .recommendations, .feedings {
+    margin-bottom: 30px;
+  }
+  
+  .recommendations h2, .feedings h2 {
+    font-size: 1.5rem;
+    color: #4CAF50;
+    margin-bottom: 15px;
+  }
+  
+  .recommendations ul, .feedings table {
+    margin-top: 10px;
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .recommendations ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .recommendations ul li {
+    font-size: 1rem;
+    color: #333;
+    padding: 5px 0;
+  }
+  
+  .feedings table th,
+  .feedings table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+  
+  .feedings table th {
+    background-color: #f0f0f0;
+    font-weight: bold;
+  }
+  
+  .feedings table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .add-photo-form {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-photo-form input[type="file"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    font-size: 1rem;
+  }
+  
+  .add-photo-form button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .add-photo-form button:hover {
+    background-color: #45a049;
+  }
+  

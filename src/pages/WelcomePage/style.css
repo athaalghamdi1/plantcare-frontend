@@ -1,26 +1,56 @@
 .welcome-container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  position: relative;
   height: 100vh;
-  background-color: black;
-  color: white;
-  font-size: 2.5rem;
-  transition: all 0.5s ease-in-out;
+  background-color: rgb(35, 47, 35);
+  color: rgba(210, 255, 210, 0.71);
 }
 
-.welcome-buttons {
+.title-container {
+  position: absolute;
+  top: 300px;
+  left: 350px;
+}
+
+.app-title {
+  font-size: 4rem;
+  z-index: 2;
+}
+
+.buttons-container {
+  position: absolute;
+  top: 450px;
+  left: 530px;
   display: flex;
-  gap: 20px;
+  gap: 10px;
 }
-
 .welcome-buttons button {
   padding: 12px 25px;
   font-size: 1rem;
-  background-color: white;
+  background-color: rgba(188, 222, 197, 0.975);
   color: black;
   border: none;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.welcome-buttons button:hover {
+  background-color: rgba(188, 222, 197, 1);
+}
+
+.corner-image {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 500px;
+  height: auto;
+  z-index: 0;
+}
+
+.cornerr-image {
+  position: fixed;
+  bottom: 0px;
+  right: 0px;
+  width: 600px;
+  height: auto;
+  z-index: 0;
 }

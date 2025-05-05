@@ -1,25 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-export default function Login() {
+export default function LoginPage({ setUser }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    navigate("/home");
+    if (email === "" || password === "") {
+      setError("Please enter both email and password.");
+    } else {
+      // Fake login logic
+      setUser({ email });
+      navigate("/home");
+    }
   };
 
   return (
-    <div className="page-wrapper">
-      <div className="auth-container">
-        <h2>Login</h2>
-        <form onSubmit={handleLogin}>
-          <input type="email" placeholder="Email" required />
-          <input type="password" placeholder="Password" required />
-          <button type="submit">Login</button>
-        </form>
-      </div>
+    <div className="auth-container">
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          placeholder="Email Address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        {error && <p className="error">{error}</p>}
+
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 }

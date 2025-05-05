@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './Profile.css'; 
 
 const Profile = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -17,10 +18,12 @@ const Profile = () => {
   };
 
   return (
-    <div>
-      <h1>Your Profile</h1>
+    <div className={`sidebar ${isDarkMode ? 'dark' : ''}`}>
+      <div className="profile-header">
+        <h1>Your Profile</h1>
+      </div>
       <div className="profile-options">
-        <div>
+        <div className="profile-option">
           <label>Language:</label>
           <select value={language} onChange={handleLanguageChange}>
             <option value="en">English</option>
@@ -28,13 +31,13 @@ const Profile = () => {
           </select>
         </div>
 
-        <div>
+        <div className="profile-option">
           <button onClick={toggleDarkMode}>
             {isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
           </button>
         </div>
 
-        <div>
+        <div className="profile-option">
           <button onClick={handleLogout}>Logout</button>
         </div>
       </div>
