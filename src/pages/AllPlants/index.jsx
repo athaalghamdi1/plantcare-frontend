@@ -1,5 +1,4 @@
-import "./style.css";
-import ProfileDrawer from "../../components/ProfileDrawer/ProfileDrawer";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function AllPlants() {
   const plants = [
@@ -8,19 +7,19 @@ export default function AllPlants() {
   ];
 
   return (
-    <div className="plants-container">
-      <ProfileDrawer />
-      <div className="main-content">
-        <h2>🌱 Your Plants</h2>
+    <>
+      <Navbar />
+      <div className="plants-container">
+        <h2>🌿 Your Plants</h2>
         {plants.map((plant) => (
-          <div key={plant.id} className="plant-card">
-            <h4>{plant.name}</h4>
+          <div className="plant-card" key={plant.id}>
+            <h3>{plant.name}</h3>
             <p>{plant.reminder}</p>
             <button>Edit</button>
             <button>Delete</button>
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }

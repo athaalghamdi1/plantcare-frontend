@@ -1,7 +1,5 @@
-import "./style.css";
 import { useState } from "react";
-// import ProfileSidebar from "../components/ProfileSidebar";
-import ProfileDrawer from "../../components/ProfileDrawer/ProfileDrawer";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Home() {
   const [image, setImage] = useState(null);
@@ -12,18 +10,18 @@ export default function Home() {
   };
 
   return (
-    <div className="home-container">
-      <ProfileDrawer />
-      <div className="main-content">
-        <h2>Welcome to PlantCARE 🌿</h2>
+    <>
+      <Navbar />
+      <div className="home-container">
+        <h2>🌱 Recommendations for your Plant</h2>
         <input type="file" onChange={handleUpload} />
         {image && (
-          <div>
-            <img src={image} alt="Uploaded Plant" style={{ width: "200px", marginTop: "1rem" }} />
-            <p>📋 Recommendations will appear here (from AI model)</p>
-          </div>
+          <>
+            <img src={image} alt="plant" style={{ width: 200, margin: "20px 0" }} />
+            <p>AI Recommendations appear here...</p>
+          </>
         )}
       </div>
-    </div>
+    </>
   );
 }

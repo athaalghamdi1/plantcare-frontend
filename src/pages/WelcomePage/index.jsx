@@ -7,16 +7,17 @@ export default function Welcome() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowOptions(true), 2000);
-    return () => clearTimeout(timer);
+    setTimeout(() => {
+      setShowOptions(true);
+    }, 2000);
   }, []);
 
   return (
     <div className="welcome-container">
       {!showOptions ? (
-        <h1 className="app-name">PlantCARE 🌿</h1>
+        <h1>🌿 PlantCARE</h1>
       ) : (
-        <div className="options">
+        <div className="welcome-buttons">
           <button onClick={() => navigate("/login")}>Login</button>
           <button onClick={() => navigate("/signup")}>Signup</button>
         </div>
