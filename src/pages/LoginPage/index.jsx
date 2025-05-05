@@ -13,7 +13,6 @@ export default function LoginPage({ setUser }) {
     if (email === "" || password === "") {
       setError("Please enter both email and password.");
     } else {
-      // Fake login logic
       setUser({ email });
       navigate("/home");
     }

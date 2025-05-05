@@ -1,34 +1,61 @@
+.dashboard-container {
+  padding: 30px;
+  font-family: "Arial", sans-serif;
+}
 
-.home-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  input[type="text"], input[type="file"] {
-    padding: 10px;
-    margin: 10px 0;
-    width: 300px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    padding: 12px 25px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #45a049;
-  }
-  
-  button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-  }
-  
+h2 {
+  margin-bottom: 30px;
+  color: #2c6b2f;
+}
+
+.top-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.analyzer-card, .add-plant-card {
+  background-color: #f1fbe9;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  flex: 1;
+  min-width: 300px;
+}
+
+.preview-image {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.add-button {
+  padding: 12px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.add-button:hover {
+  background-color: #45a049;
+}
+
+.recommendations, .reminders {
+  margin-top: 20px;
+  background-color: #eaf8e5;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.recommendations ul, .reminders ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recommendations li, .reminders li {
+  padding: 8px 0;
+}

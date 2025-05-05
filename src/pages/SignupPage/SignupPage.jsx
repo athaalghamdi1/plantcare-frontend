@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./style.css";
 
-// Mock API function (استبدل بهذا الاستدعاء الحقيقي لاحقًا)
 const fakeSignupAPI = async (formData) => {
   return new Promise((resolve) => {
     setTimeout(() => resolve({ ...formData, id: Date.now() }), 1000);
