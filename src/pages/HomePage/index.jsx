@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar.jsx";
 // import SmartReminders from "./components/SmartReminders";
 import SmartReminders from "../../components/SmartReminders/SmartReminders.jsx";
 import "./style.css";
+import * as plantAPI from "../../pages/utilities/api.js"
+
 
 export default function Home() {
   const [reminders, setReminders] = useState([]);
@@ -26,16 +28,18 @@ export default function Home() {
   //     .catch((error) => console.error("Error fetching plants:", error));
   // }, []);
 
-  const handleAddPlant = () => {
+  const handleAddPlant = async () => {
     const newPlant = { name: "New Plant", type: "Succulent", lastWatered: new Date() };
-    fetch('/api/plants', {
-      method: "POST",
-      body: JSON.stringify(newPlant),
-      headers: { "Content-Type": "application/json" },
-    })
-      .then((res) => res.json())
-      .then((data) => setPlants([...plants, data]))
-      .catch((error) => console.error("Error adding plant:", error));
+    const thePlant = await plantAPI.createPlant(newPlant)
+    console.log(thePlant)
+    // fetch('/api/plants', {
+    //   method: "POST",
+    //   body: JSON.stringify(newPlant),
+    //   headers: { "Content-Type": "application/json" },
+    // })
+    //   .then((res) => res.json())
+    //   .then((data) => setPlants([...plants, data]))
+    //   .catch((error) => console.error("Error adding plant:", error));
   };
 
   return (

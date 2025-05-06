@@ -4,19 +4,27 @@ import * as usersAPI from "../../pages/utilities/user-api.js";
 import "./style.css";
 
 export default function LoginPage({ setUser }) {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
-      setError("Please enter both email and password.");
+    if (username === "" || password === "") {
+      setError("Please enter both username and password.");
     } else {
-      const logUser = await usersAPI.login({email: email, password: password});
-      setUser(logUser);
-      navigate("/home");
+      try{
+        console.log("signing in")
+        const logUser = await usersAPI.login({username: username, password: password});
+        console.log(logUser)
+        if (!logUser) return;
+        setUser(logUser);
+        navigate("/home");
+      } catch(e){
+        console.error("ERROR!!!!!:",e)
+        return
+      }
     }
   };
 
@@ -26,10 +34,10 @@ export default function LoginPage({ setUser }) {
         <h2>Login</h2>
         <form onSubmit={handleSubmit}>
           <input
-            type="email"
-            placeholder="Email Address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
           <input
             type="password"

@@ -1,4 +1,4 @@
-const API_URL = '/api';
+const API_URL = '/api/users';
 import sendRequest from "./sendRequest";
 
 export async function signup(formData) {
@@ -13,7 +13,9 @@ export async function signup(formData) {
 }
 export async function login(formData) {
     try {
-        const response = await sendRequest(`${url}login/`, "POST", formData)
+        console.log("LOGINFUNCTION")
+        const response = await sendRequest(`${API_URL}/login/`, "POST", formData)
+        console.log("LOGIN RESPONSE", response)
         localStorage.setItem('token', response.access);
         return response.user
     } catch (err) {

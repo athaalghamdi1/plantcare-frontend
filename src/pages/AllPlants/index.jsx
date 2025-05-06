@@ -16,6 +16,7 @@ export default function AllPlants() {
     async function getAllPlants() {
         try {
             const plantData = await plantAPI.getPlants()
+            console.log(plantData)
             setPlants(plantData)
         } catch (err) {
             console.log(err);

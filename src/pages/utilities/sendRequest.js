@@ -1,7 +1,7 @@
 export default async function sendRequest(url, method = 'GET', payload) {
 	const token = localStorage.getItem('token');
 	const options = { method };
-
+    console.log('token',token)
 	if (payload) {
 		options.headers = { 'Content-Type': 'application/json' };
 		options.body = JSON.stringify(payload);
@@ -14,8 +14,9 @@ export default async function sendRequest(url, method = 'GET', payload) {
 
 	try {
 		const res = await fetch(`http://127.0.0.1:8000${url}`, options);
-
+		console.log(res)
 		if (!res.ok) {
+			console.log("res is not ok")
 			const text = await res.text();
 			console.error("Response not OK:", res.status, text);
 			throw new Error(`Request failed with status ${res.status}`);
