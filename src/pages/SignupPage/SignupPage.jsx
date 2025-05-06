@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import * as usersAPI from "../../pages/utilities/api.js";
+import * as usersAPI from "../../pages/utilities/user-api.js";
 
 export default function SignupPage({ setUser }) {
   const navigate = useNavigate();
@@ -37,8 +37,9 @@ export default function SignupPage({ setUser }) {
     try {
       evt.preventDefault();
       const newUser = await usersAPI.signup(formData);
-      setUser(newUser);
-      navigate("/home");
+      console.log(newUser)
+      // setUser(newUser);
+      navigate("/login");
     } catch (err) {
       console.log(err);
       setUser(null);

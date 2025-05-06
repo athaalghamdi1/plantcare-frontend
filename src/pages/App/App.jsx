@@ -47,8 +47,8 @@ function App() {
       <main className={mainCSS}>
         <Routes>
           <Route path="/" element={<Welcome />} />
-          <Route path="/login" element={<LoginPage setUser={() => {}} />} />
-          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage setUser={setUser} />} />
+          <Route path="/signup" element={<SignupPage setUser={setUser} />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/plants" element={<AllPlants />} />
           <Route path="/analysis" element={<AnalysisForm />} />

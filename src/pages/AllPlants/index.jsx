@@ -2,16 +2,27 @@ import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import * as plantAPI from "../../pages/utilities/api.js"
 export default function AllPlants() {
   const [plants, setPlants] = useState([]);
 
+  // useEffect(() => {
+  //   fetch('/api/plants/')
+  //     .then((response) => response.json())
+  //     .then((data) => setPlants(data))
+  //     .catch((error) => console.error("Error fetching plants:", error));
+  // }, []);
   useEffect(() => {
-    fetch('/api/plants/')
-      .then((response) => response.json())
-      .then((data) => setPlants(data))
-      .catch((error) => console.error("Error fetching plants:", error));
-  }, []);
+    async function getAllPlants() {
+        try {
+            const plantData = await plantAPI.getPlants()
+            setPlants(plantData)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    if (plants.length === 0) getAllPlants()
+}, [])
 
   const handleDeletePlant = (id) => {
     fetch(`/api/plants/${id}`, { method: "DELETE" })
