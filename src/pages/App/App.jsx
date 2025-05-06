@@ -10,8 +10,31 @@ import AnalysisForm from "../AnalysisForm/AnalysisForm.jsx";
 import ReminderForm from "../ReminderForm/index.jsx";
 import "./App.css";
 
+function Navbar() {
+  return (
+    <nav className="navbar">
+      <ul>
+        <li>
+          <Link to="/home">Home</Link>
+        </li>
+        <li>
+          <Link to="/plants">All Plants</Link>
+        </li>
+        <li>
+          <Link to="/analysis">Analysis</Link>
+        </li>
+        <li>
+          <Link to="/reminders">Reminders</Link>
+        </li>
+      </ul>
+    </nav>
+  );
+}
+
 function App() {
-const [user, setUser] = useState(null);
+  const location = useLocation();
+  const [user, setUser] = useState(null);
+
   const routes = ["home", "plants", "analysis", "reminders"];
   const mainCSS = routes.filter((r) =>
     location.pathname.includes(r) ? r : ""
@@ -19,7 +42,9 @@ const [user, setUser] = useState(null);
 
   return (
     <>
-           <main className={mainCSS}>
+      {location.pathname !== "/login" && location.pathname !== "/signup" && location.pathname !== "/" && <Navbar />}
+
+      <main className={mainCSS}>
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/login" element={<LoginPage setUser={() => {}} />} />

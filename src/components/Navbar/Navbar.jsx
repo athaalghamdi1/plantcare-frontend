@@ -1,27 +1,26 @@
-import { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import ProfileDrawer from "../ProfileDrawer/ProfileDrawer";
+import "./navbar.css";
 
-function Navbar() {
-  const [showProfile, setShowProfile] = useState(false);
-
+const Navbar = () => {
   return (
     <nav className="navbar">
-      <div className="navbar-content">
-        <div className="nav-logo">
-          <Link to="/home">🌿 PlantCare</Link>
-        </div>
-        <div className="nav-links">
-          <Link to="/home">Home</Link>
-          <Link to="/plants">My Plants</Link>
-        </div>
-        <button className="profile-btn" onClick={() => setShowProfile(!showProfile)}>
-          Profile
-        </button>
-      </div>
-      {showProfile && <ProfileDrawer />}
+      <ul>
+        <li>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <Link to="/plants">All Plants</Link>
+        </li>
+        <li>
+          {/* <Link to="/add-plant">Add Plant</Link> */}
+        </li>
+        <li>
+          {/* <Link to="/reminders">Reminders</Link> */}
+        </li>
+      </ul>
     </nav>
   );
-}
+};
 
 export default Navbar;

@@ -1,80 +1,62 @@
-import { useState } from "react";
-import Navbar from "../../components/Navbar/Navbar";
+import { useState, useEffect } from "react";
+import Navbar from "../../components/Navbar/Navbar.jsx";
+// import SmartReminders from "./components/SmartReminders";
+import SmartReminders from "../../components/SmartReminders/SmartReminders.jsx";
 import "./style.css";
 
 export default function Home() {
-  const [image, setImage] = useState(null);
-  const [file, setFile] = useState(null);
-  const [analysisResult, setAnalysisResult] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [reminders, setReminders] = useState([]);
+  const [plants, setPlants] = useState([]);
 
-  const handleUpload = (e) => {
-    const uploadedFile = e.target.files[0];
-    setFile(uploadedFile);
-    setImage(URL.createObjectURL(uploadedFile));
-    setAnalysisResult("");
-  };
+  useEffect(() => {
+    fetch('/api/due-reminders/')
+      .then((response) => response.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setReminders(data);
+        } else {
+          console.error("Data is not an array:", data);
+        }
+      })
+      .catch((error) => console.error("Error fetching reminders:", error));
 
-  const handleAnalyze = async () => {
-    if (!file) return;
+    fetch('/api/plants/')
+      .then((response) => response.json())
+      .then((data) => setPlants(data))
+      .catch((error) => console.error("Error fetching plants:", error));
+  }, []);
 
-    const formData = new FormData();
-    formData.append("file", file);
-
-    setLoading(true);
-    try {
-      const response = await fetch("http://localhost:8000/predict", {
-        method: "POST",
-        body: formData,
-      });
-      const data = await response.json();
-      setAnalysisResult(data.result || "No analysis result returned.");
-    } catch (error) {
-      setAnalysisResult("Error during analysis. Make sure the server is running.");
-      console.error(error);
-    } finally {
-      setLoading(false);
-    }
+  const handleAddPlant = () => {
+    const newPlant = { name: "New Plant", type: "Succulent", lastWatered: new Date() };
+    fetch('/api/plants', {
+      method: "POST",
+      body: JSON.stringify(newPlant),
+      headers: { "Content-Type": "application/json" },
+    })
+      .then((res) => res.json())
+      .then((data) => setPlants([...plants, data]))
+      .catch((error) => console.error("Error adding plant:", error));
   };
 
   return (
-    <>
+    <div className="home-page">
       <Navbar />
-      <div className="dashboard-container">
-        <h2>👋 Welcome back, Mohamed! Here's a quick overview of your plants today.</h2>
-
-        <div className="top-section">
-          <div className="analyzer-card">
-            <h3>📸 Plant Image Analyzer</h3>
-            <input type="file" onChange={handleUpload} accept="image/*" />
-            {image && <img src={image} alt="Plant" className="preview-image" />}
-            {file && <button onClick={handleAnalyze}>🔍 Analyze Image</button>}
-            {loading && <p>⏳ Analyzing image...</p>}
-            {!loading && analysisResult && <p>{analysisResult}</p>}
-          </div>
-
-          <div className="add-plant-card">
-            <h3>🌿 Add a New Plant</h3>
-            <button className="add-button">+ Add Plant</button>
-          </div>
+      <div className="dashboard">
+        <h1>Welcome to Your Plant Care Dashboard</h1>
+        <div className="plant-actions">
+          <button className="upload-plant-btn">Upload Plant Image</button>
+          <button className="add-plant-btn" onClick={handleAddPlant}>Add New Plant</button>
         </div>
-
         <div className="recommendations">
-          <h3>🌞 Today's Recommendations</h3>
-          <ul>
-            <li>💧 Water the basil plant today</li>
-            <li>🌤️ Keep the lavender out of direct sunlight</li>
-          </ul>
+          <h2>Daily Recommendations</h2>
+          <p>Based on your plants, here are today's tips!</p>
         </div>
-
+        
         <div className="reminders">
-          <h3>⏰ Upcoming Reminders</h3>
-          <ul>
-            <li>🧪 Fertilize the cactus | Tomorrow</li>
-            <li>💦 Water the mint plant | In two days</li>
-          </ul>
+          <h2>Due Reminders</h2>
+          <SmartReminders reminders={reminders} />
         </div>
       </div>
-    </>
+    </div>
   );
 }

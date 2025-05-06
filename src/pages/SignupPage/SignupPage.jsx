@@ -1,122 +1,64 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./style.css";
-
-const fakeSignupAPI = async (formData) => {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve({ ...formData, id: Date.now() }), 1000);
-  });
-};
+import * as usersAPI from "../../pages/utilities/api.js";
 
 export default function SignupPage({ setUser }) {
   const navigate = useNavigate();
-  const initialState = {
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  };
+  const initialState = { username: "", password: "", confirmPassword: "", email: "" };
   const [formData, setFormData] = useState(initialState);
-  const [errors, setErrors] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+  const [errors, setErrors] = useState({ username: '', password: '', email: '', confirmPassword: '' });
+  let disabledSubmitBtn = Object.values(errors).every(val => val === "") && Object.values(formData).every(val => val !== "") ? false : true;
 
-  const isFormValid =
-    Object.values(errors).every((val) => val === "") &&
-    Object.values(formData).every((val) => val !== "");
+  function handleChange(evt) {
+    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+    checkErrors(evt);
+  }
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-    validateField(name, value);
-  };
+  function checkErrors({ target }) {
+    const updateErrors = { ...errors };
 
-  const validateField = (name, value) => {
-    const newErrors = { ...errors };
-
-    if (name === "name") {
-      newErrors.name =
-        value.length < 3 ? "Name must be at least 3 characters." : "";
+    if (target.name === 'username') {
+      updateErrors.username = target.value.length < 3 ? 'Your username must be at least three characters long.' : "";
     }
-    if (name === "email") {
-      newErrors.email = !value.includes("@")
-        ? "Email must include '@' symbol."
-        : "";
+    if (target.name === 'password') {
+      updateErrors.password = target.value.length < 3 ? "Your password must be at least three characters long." : "";
     }
-    if (name === "password") {
-      newErrors.password =
-        value.length < 3 ? "Password must be at least 3 characters." : "";
+    if (target.name === 'confirmPassword') {
+      updateErrors.confirmPassword = target.value !== formData.password ? "Your passwords must match." : "";
     }
-    if (name === "confirmPassword") {
-      newErrors.confirmPassword =
-        value !== formData.password ? "Passwords do not match." : "";
+    if (target.name === 'email') {
+      updateErrors.email = !target.value.includes("@") ? "Your email must include '@'." : "";
     }
 
-    setErrors(newErrors);
-  };
+    setErrors(updateErrors);
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  async function handleSubmit(evt) {
     try {
-      const newUser = await fakeSignupAPI(formData);
+      evt.preventDefault();
+      const newUser = await usersAPI.signup(formData);
       setUser(newUser);
-      setFormData(initialState);
-      navigate("/login");
+      navigate("/home");
     } catch (err) {
-      console.error("Signup failed:", err);
+      console.log(err);
       setUser(null);
     }
-  };
+  }
 
   return (
-    <div className="auth-container">
-      <h2>Sign Up</h2>
+    <>
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Full Name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {errors.name && <p className="error">{errors.name}</p>}
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p className="error">{errors.email}</p>}
-
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p className="error">{errors.password}</p>}
-
-        <input
-          type="password"
-          name="confirmPassword"
-          placeholder="Confirm Password"
-          value={formData.confirmPassword}
-          onChange={handleChange}
-        />
-        {errors.confirmPassword && (
-          <p className="error">{errors.confirmPassword}</p>
-        )}
-
-        <button type="submit" disabled={!isFormValid}>
-          Create Account
-        </button>
+        <input type="text" name="username" value={formData.username} onChange={handleChange} />
+        {errors.username && <p>{errors.username}</p>}
+        <input type="text" name="email" value={formData.email} onChange={handleChange} />
+        {errors.email && <p>{errors.email}</p>}
+        <input type="password" name="password" value={formData.password} onChange={handleChange} />
+        {errors.password && <p>{errors.password}</p>}
+        <input type="password" name="confirmPassword" value={formData.confirmPassword} onChange={handleChange} />
+        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        <button type="submit" disabled={disabledSubmitBtn}>Submit</button>
       </form>
-    </div>
+    </>
   );
 }
