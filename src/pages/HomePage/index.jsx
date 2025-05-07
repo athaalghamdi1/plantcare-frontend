@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import SmartReminders from "../../components/SmartReminders/SmartReminders.jsx";
 import "./style.css";
 import * as plantAPI from "../utilities/plants-api.js"
 import * as recAPI from "../utilities/recs-api.js"
 
 export default function Home() {
+  const navigate = useNavigate()
+
   const [reminders, setReminders] = useState([]);
   const [plants, setPlants] = useState([]);
   const [recs, setRecs] = useState([]);
@@ -37,13 +39,16 @@ export default function Home() {
     if (recs.length === 0) getAllRecs()
   }, [])
 
-  const handleAddPlant = async (plantData) => {
-    try {
-      const createdPlant = await plantAPI.createPlant(plantData);
-      setPlants([...plants, createdPlant]);
-    } catch (error) {
-      console.error("Error adding plant:", error);
-    }
+  const handleAddRec = async () => {
+    navigate('/recommendation')
+  };
+
+  const handleAddPlant = async () => {
+    navigate('/newPlant')
+  };
+
+  const handleAddReminder = () => {
+    navigate('/reminders')
   };
   
   
@@ -64,11 +69,12 @@ export default function Home() {
               ))) : (
                 <p>Plants are all good. Add a new symptom for more recommendations!</p>
               )}
+          <button onClick={handleAddRec}>Add Plant Symptoms</button>
         </div>
         
-        <div className="reminders">
-          <h2>Due Reminders</h2>
-          <SmartReminders reminders={reminders} />
+        <div className="home-nav">
+          <button onClick={handleAddPlant}>Add Plants</button>
+          <button onClick={handleAddReminder}>Add Reminder</button>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ export default function SignupPage({ setUser }) {
     try {
       const newUser = await usersAPI.signup(formData);
       setUser(newUser);
-      navigate("/");
+      navigate("/home");
     } catch (err) {
       console.log(err);
       setUser(null);

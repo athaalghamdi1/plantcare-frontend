@@ -7,7 +7,7 @@ import LoginPage from "../LoginPage/index";
 import SignupPage from "../SignupPage/SignupPage.jsx";
 import HomePage from "../HomePage/index.jsx";
 import AllPlants from "../AllPlants/index.jsx";
-import AnalysisForm from "../AnalysisForm/AnalysisForm.jsx";
+import RecommendationForm from "../RecommendationForm/RecommendationForm.jsx";
 import ReminderForm from "../ReminderForm/index.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import PlantForm from "../../components/PlantForm/PlantForm.jsx";
@@ -46,8 +46,9 @@ function App() {
               <Route path="/home" element={<HomePage />} />
               <Route path="/newPlant" element={<PlantForm />} />
               <Route path="/plants" element={<AllPlants />} />
-              <Route path="/analysis" element={<AnalysisForm />} />
+              {/* <Route path="/analysis" element={<AnalysisForm />} /> */}
               <Route path="/reminders" element={<ReminderForm />} />
+              <Route path="/recommendation" element={<RecommendationForm />} />
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/plants/:id" element={<PlantDetailPage/>} />

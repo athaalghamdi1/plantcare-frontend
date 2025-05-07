@@ -6,12 +6,6 @@ import * as plantAPI from "../utilities/plants-api.js"
 export default function AllPlants() {
   const [plants, setPlants] = useState([]);
 
-  // useEffect(() => {
-  //   fetch('/api/plants/')
-  //     .then((response) => response.json())
-  //     .then((data) => setPlants(data))
-  //     .catch((error) => console.error("Error fetching plants:", error));
-  // }, []);
   useEffect(() => {
     async function getAllPlants() {
         try {
