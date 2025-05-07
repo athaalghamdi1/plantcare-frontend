@@ -16,6 +16,14 @@ const PlantDetailPage = ({ user}) => {
         fetchPlant()
       }, [])
 
+    const handleDeletePlant = (id) => {
+
+    };
+
+    const handleEditPlant = (id) => {
+
+    };
+
     return(
         <div>
             <h1>Name: {plant.name}</h1>
@@ -23,6 +31,8 @@ const PlantDetailPage = ({ user}) => {
             <h3>Fertilizing Frequency: {plant.fertilizing_frequency_days}</h3>
             <h3>Last Fertilized: {plant.last_fertilized}</h3>
             <h3>Last Watered: {plant.last_watered}</h3>
+            <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
+            <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
         </div>
     );
 

@@ -42,7 +42,7 @@ function App() {
         <Routes>
         { user 
           ? <>
-              <Route path="/" element={<Welcome user={user} />} />
+              {/* <Route path="/" element={<Welcome user={user} />} /> */}
               <Route path="/home" element={<HomePage />} />
               <Route path="/newPlant" element={<PlantForm />} />
               <Route path="/plants" element={<AllPlants />} />

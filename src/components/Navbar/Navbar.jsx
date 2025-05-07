@@ -19,16 +19,16 @@ if (user)
     <nav className="navbar">
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          {window.location.pathname === '/home' ? "" : <Link to="/home">Home</Link>}
         </li>
         <li>
           <Link to="/plants">All Plants</Link>
         </li>
         <li>
-          <Link to="/newPlant">Add Plant</Link>
+          {window.location.pathname === '/home' ? "" : <Link to="/newPlant">Add Plant</Link>}
         </li>
         <li>
-          <Link to="/reminders">Reminders</Link>
+          {window.location.pathname === '/home' ? "" : <Link to="/reminders">Reminders</Link>}
         </li>
         <form id="logout-form" onSubmit={handleLogout}>
              <button type="submit">Log out</button>

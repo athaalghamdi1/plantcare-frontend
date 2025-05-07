@@ -65,13 +65,13 @@ export default function Home() {
     <div className="home-page">
       <div className="dashboard">
         <h1>Welcome to Your Plant Care Dashboard</h1>
-              <div className="plants-list">
+              {/* <div className="plants-list">
               {plants.length > 0 ? (
                 plants.map((plant) => (
                   <div key={plant.id} className="plant-item">
                     <img src={plant.image} alt={plant.name} className="plant-image" />
                     <h3>{plant.name}</h3>
-                    <Link to={`/plant/${plant.id}`}>View Details</Link>
+                    <Link to={`/plants/${plant.id}`}>View Details</Link>
                     <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
                     <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
                   </div>
@@ -79,7 +79,7 @@ export default function Home() {
               ) : (
                 <p>No plants found. Add a new plant!</p>
               )}
-            </div>
+            </div> */}
         <div className="recommendations">
           <h2>Daily Recommendations</h2>
           <p>Based on your plants, here are today's tips!</p>

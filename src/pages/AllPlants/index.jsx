@@ -25,15 +25,7 @@ export default function AllPlants() {
     if (plants.length === 0) getAllPlants()
 }, [])
 
-  const handleDeletePlant = (id) => {
-    fetch(`/api/plants/${id}`, { method: "DELETE" })
-      .then(() => setPlants(plants.filter((plant) => plant.id !== id)))
-      .catch((error) => console.error("Error deleting plant:", error));
-  };
 
-  const handleEditPlant = (id) => {
-    alert(`Editing plant with ID: ${id}`);
-  };
 
   return (
     <div className="all-plants-page">
@@ -46,8 +38,6 @@ export default function AllPlants() {
               <img src={plant.image} alt={plant.name} className="plant-image" />
               <h3>{plant.name}</h3>
               <Link to={`/plants/${plant.id}`}>View Details</Link>
-              <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
-              <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
             </div>
           ))
         ) : (
