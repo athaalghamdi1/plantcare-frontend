@@ -45,7 +45,7 @@ export default function AllPlants() {
             <div key={plant.id} className="plant-item">
               <img src={plant.image} alt={plant.name} className="plant-image" />
               <h3>{plant.name}</h3>
-              <Link to={`/plant/${plant.id}`}>View Details</Link>
+              <Link to={`/plants/${plant.id}`}>View Details</Link>
               <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
               <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
             </div>

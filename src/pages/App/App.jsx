@@ -12,11 +12,12 @@ import ReminderForm from "../ReminderForm/index.jsx";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import PlantForm from "../../components/PlantForm/PlantForm.jsx";
 import Sidebar from "../../components/Sidebar/Sidebar.jsx";
+import PlantDetailPage from "../PlantDetailPage/index.jsx";
 import "./App.css";
 
 function App() {
   const location = useLocation();
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
 
   const routes = ["home", "plants", "analysis", "reminders"];
   const mainCSS = routes.filter((r) =>
@@ -26,17 +27,18 @@ function App() {
   useEffect(() => {
     async function fetchUser (){
       const res = await userAPI.getUser()
-      console.log('res', res)
+      // console.log('res', res)
+      setUser(res)
     }
     fetchUser()
   }, [])
 
-  console.log(user)
+  // console.log(user)
 
   return (
 
       <main className={mainCSS}>
-        <Navbar user={user}/>
+        <Navbar user={user} setUser={setUser}/>
         <Routes>
         { user 
           ? <>
@@ -48,7 +50,8 @@ function App() {
               <Route path="/reminders" element={<ReminderForm />} />
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/home" element={<HomePage />} />
-              <Route path="*" element={<>404 not found</>} />
+              <Route path="/plants/:id" element={<PlantDetailPage/>} />
+              {/* <Route path="*" element={<>404 not found</>} /> */}
           </>
           : <>
             <Route path="/" element={<Welcome />} />

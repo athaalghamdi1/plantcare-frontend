@@ -8,7 +8,9 @@ export const createPlant = async (plantData) => {
 export const getPlants = async () => {
   return sendRequest(url, "GET");
 };
-
+export async function getPlantById(plantId) {
+  return sendRequest(`${url}${plantId}/`)
+};
 // export const createReminder = async (reminderData) => {
 //   const response = await fetch(`${API_URL}reminders/`, {
 //     method: 'POST',
