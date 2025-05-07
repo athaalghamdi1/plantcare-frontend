@@ -1,9 +1,9 @@
-const API_URL = '/api/users';
 import sendRequest from "./sendRequest";
+const url = "/users/"
 
 export async function signup(formData) {
     try {
-        const response = await sendRequest(`${API_URL}/signup/`, "POST", formData)
+        const response = await sendRequest(`${url}signup/`, "POST", formData)
         localStorage.setItem('token', response.access);
         return response.user
     } catch(err) {
@@ -11,15 +11,34 @@ export async function signup(formData) {
         return null;
     }
 }
+
 export async function login(formData) {
     try {
-        console.log("LOGINFUNCTION")
-        const response = await sendRequest(`${API_URL}/login/`, "POST", formData)
-        console.log("LOGIN RESPONSE", response)
+        console.log(url)
+        const response = await sendRequest(`${url}login/`, "POST", formData)
         localStorage.setItem('token', response.access);
         return response.user
     } catch (err) {
         localStorage.removeItem('token');
+        return null;
+    }
+}
+
+export function logout() {
+    localStorage.removeItem('token');
+}
+
+export async function getUser() {
+    try {
+        const token = localStorage.getItem('token');
+        if (token) {
+            const response = await sendRequest(`${url}token/refresh/`)
+            localStorage.setItem('token', response.access);
+            return response.user
+        }
+        return null;
+    } catch (err) {
+        console.log(err);
         return null;
     }
 }

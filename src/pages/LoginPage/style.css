@@ -1,34 +1,82 @@
 .auth-page {
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 100vh;
-  background-color: rgb(35, 47, 35);
+  font-family: 'Arial', sans-serif;
 }
 
+.auth-left,
+.auth-right {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* النصف الأيسر */
+.auth-left {
+  background-color: #fff;
+  flex-direction: column;
+  padding: 40px;
+  text-align: center;
+  color: #213121;
+}
+
+.auth-left h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.auth-left p {
+  max-width: 300px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* النصف الأيمن */
+.auth-right {
+  background-color: #1e3c2f;
+  background-image: url('leaves.png'); /* استخدم صورة أوراق مناسبة */
+  background-repeat: no-repeat;
+  background-position: top right;
+  background-size: contain;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* صندوق تسجيل الدخول */
 .auth-box {
-  background-color: #cbdfd352;
+  background-color: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
   padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 400px;
+  color: white;
+}
+
+.auth-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .auth-box input {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin-bottom: 15px;
-  border: 1px solid #f6f5f5;
+  border: none;
   border-radius: 4px;
+  background-color: white;
+  color: #333;
 }
 
 .auth-box button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   background-color: #213121;
   border: none;
-  color: rgb(255, 255, 255);
+  color: white;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -38,8 +86,18 @@
 }
 
 .error {
-  color: rgb(175, 64, 64);
+  color: #ff7b7b;
   font-size: 14px;
   margin-bottom: 10px;
   text-align: center;
+}
+.corner1-image {
+  position: fixed;
+  bottom: 0px;
+  right: 1250px;
+  width: 270px;
+  height: auto;
+  z-index: 0;
+  /* transform: rotate(12deg); */
+  /* transform: scaleX(-1); */
 }

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 import { Link } from "react-router-dom";
 import "./style.css";
-import * as plantAPI from "../../pages/utilities/api.js"
+import * as plantAPI from "../utilities/plants-api.js"
 export default function AllPlants() {
   const [plants, setPlants] = useState([]);
 
@@ -37,7 +37,7 @@ export default function AllPlants() {
 
   return (
     <div className="all-plants-page">
-      <Navbar />
+      {/* <Navbar /> */}
       <h1>All Plants</h1>
       <div className="plants-list">
         {plants.length > 0 ? (

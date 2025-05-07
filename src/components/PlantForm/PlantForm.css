@@ -1,0 +1,82 @@
+body {
+  background-color: #f0f0f0;
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.plant-form {
+  width: 100%;
+  max-width: 500px;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.6);
+  border-radius: 15px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  color: #fff;
+  backdrop-filter: blur(10px);
+}
+
+.plant-form h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+.plant-form input {
+  width: 100%;
+  padding: 12px;
+  margin: 12px 0;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plant-form input:focus {
+  border-color: #56a773;
+  box-shadow: 0 0 5px rgba(86, 167, 115, 0.5);
+  outline: none;
+}
+
+.add-plant-btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 20px;
+  background-color: #56a773;
+  color: #fff;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-plant-btn:hover {
+  background-color: #4a8e5b;
+}
+
+.plant-form input::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .plant-form {
+    padding: 20px;
+  }
+
+  .plant-form h2 {
+    font-size: 24px;
+  }
+
+  .add-plant-btn {
+    font-size: 16px;
+  }
+}

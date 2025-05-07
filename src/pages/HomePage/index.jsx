@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar.jsx";
 // import SmartReminders from "./components/SmartReminders";
 import SmartReminders from "../../components/SmartReminders/SmartReminders.jsx";
 import "./style.css";
-import * as plantAPI from "../../pages/utilities/api.js"
-
+import * as plantAPI from "../utilities/plants-api.js"
+// import PlantForm from "../../components/PlantForm/PlantForm.jsx";
+// import plantf from "../../components/PlantForm/PlantForm.jsx"
 
 export default function Home() {
   const [reminders, setReminders] = useState([]);
@@ -27,11 +29,28 @@ export default function Home() {
   //     .then((data) => setPlants(data))
   //     .catch((error) => console.error("Error fetching plants:", error));
   // }, []);
+  useEffect(() => {
+    async function getAllPlants() {
+        try {
+            const plantData = await plantAPI.getPlants()
+            console.log(plantData)
+            setPlants(plantData)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    if (plants.length === 0) getAllPlants()
+  }, [])
 
-  const handleAddPlant = async () => {
-    const newPlant = { name: "New Plant", type: "Succulent", lastWatered: new Date() };
-    const thePlant = await plantAPI.createPlant(newPlant)
-    console.log(thePlant)
+  const handleAddPlant = async (plantData) => {
+    try {
+      const createdPlant = await plantAPI.createPlant(plantData);
+      setPlants([...plants, createdPlant]);
+    } catch (error) {
+      console.error("Error adding plant:", error);
+    }
+  };
+  
     // fetch('/api/plants', {
     //   method: "POST",
     //   body: JSON.stringify(newPlant),
@@ -40,17 +59,27 @@ export default function Home() {
     //   .then((res) => res.json())
     //   .then((data) => setPlants([...plants, data]))
     //   .catch((error) => console.error("Error adding plant:", error));
-  };
+  
 
   return (
     <div className="home-page">
-      <Navbar />
       <div className="dashboard">
         <h1>Welcome to Your Plant Care Dashboard</h1>
-        <div className="plant-actions">
-          {/* <button className="upload-plant-btn">Upload Plant Image</button> */}
-          <button className="add-plant-btn" onClick={handleAddPlant}>Add New Plant</button>
-        </div>
+              <div className="plants-list">
+              {plants.length > 0 ? (
+                plants.map((plant) => (
+                  <div key={plant.id} className="plant-item">
+                    <img src={plant.image} alt={plant.name} className="plant-image" />
+                    <h3>{plant.name}</h3>
+                    <Link to={`/plant/${plant.id}`}>View Details</Link>
+                    <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
+                    <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
+                  </div>
+                ))
+              ) : (
+                <p>No plants found. Add a new plant!</p>
+              )}
+            </div>
         <div className="recommendations">
           <h2>Daily Recommendations</h2>
           <p>Based on your plants, here are today's tips!</p>

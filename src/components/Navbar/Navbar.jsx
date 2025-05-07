@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./navbar.css";
 
-const Navbar = () => {
+const Navbar = ({ user}) => {
   return (
     <nav className="navbar">
       <ul>
@@ -13,10 +13,10 @@ const Navbar = () => {
           <Link to="/plants">All Plants</Link>
         </li>
         <li>
-          {/* <Link to="/add-plant">Add Plant</Link> */}
+          <Link to="/newPlant">Add Plant</Link>
         </li>
         <li>
-          {/* <Link to="/reminders">Reminders</Link> */}
+          <Link to="/reminders">Reminders</Link>
         </li>
       </ul>
     </nav>

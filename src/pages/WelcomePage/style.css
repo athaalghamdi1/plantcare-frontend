@@ -19,7 +19,7 @@
 .buttons-container {
   position: absolute;
   top: 450px;
-  left: 530px;
+  left: 500px;
   display: flex;
   /* gap: 10px; */
 }
