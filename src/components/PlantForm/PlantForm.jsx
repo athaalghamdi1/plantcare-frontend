@@ -13,6 +13,7 @@ export default function PlantForm({edit}) {
   const [plant, setPlant] = useState({});
   const [newPlant, setNewPlant] = useState({
     name: "",
+    image: "",
     last_fertilized: "",
     last_watered: ""
   });
@@ -43,6 +44,7 @@ export default function PlantForm({edit}) {
       console.log(res)
       setNewPlant({
         name: "",
+        image: "",
         last_fertilized: "",
         last_watered: ""
       });
@@ -54,11 +56,20 @@ export default function PlantForm({edit}) {
 
   return (
     <form onSubmit={handleSubmit} className="plant-form">
-      {edit ? <h2>Edit {plant.name}'s Details</h2> : <h2>Add a Plant</h2>}      <input
+      {edit ? <h2>Edit {plant.name}'s Details</h2> : <h2>Add a Plant</h2>}      
+      <input
         type="text"
         name="name"
         placeholder="Plant Name"
         value={newPlant.name}
+        onChange={handleInputChange}
+        required
+      />
+      <input
+        type="text"
+        name="image"
+        placeholder="Plant Pic"
+        value={newPlant.image}
         onChange={handleInputChange}
         required
       />

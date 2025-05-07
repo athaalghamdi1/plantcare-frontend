@@ -63,8 +63,7 @@ export default function Home() {
             {recs.length > 0 ? (
               recs.map((rec) => (
                 <div key={rec.id} className="rec-item">
-                  <p>{rec.symptom}</p>
-                  <p>{rec.solution}</p>
+                  <p>Symptom: {rec.symptom} | Solution: {rec.solution}</p>
                 </div>
               ))) : (
                 <p>Plants are all good. Add a new symptom for more recommendations!</p>
