@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import * as plantAPI from "../../pages/utilities/plants-api"
 
-const PlantDetailPage = ({ user}) => {
+const PlantDetailPage = () => {
 
     const navigate = useNavigate()
 
@@ -16,10 +16,11 @@ const PlantDetailPage = ({ user}) => {
           setPlant(res)
         }
         fetchPlant()
-      }, [])
+      }, [id])
 
     const handleDeletePlant = async () => {
-        alert(`Are you sure you want to delete ${plant.name}?`)
+        const confirmDelete = confirm(`Are you sure you want to delete ${plant.name}?`)
+        if (!confirmDelete) return
         try {
             // e.preventDefault();
             const response = await plantAPI.deletePlant(plant.id)
@@ -31,8 +32,8 @@ const PlantDetailPage = ({ user}) => {
         }
     };
 
-    const handleEditPlant = (id) => {
-
+    const handleEditPlant = () => {
+        navigate(`/plants/${plant.id}/edit`)
     };
 
     return(

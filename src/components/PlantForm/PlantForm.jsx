@@ -1,27 +1,51 @@
 // components/PlantForm/PlantForm.jsx
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./PlantForm.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import * as plantAPI from "../../pages/utilities/plants-api"
 
-export default function PlantForm({ onAddPlant }) {
+
+export default function PlantForm({edit}) {
+
   const navigate = useNavigate()
+  const {id} = useParams()
+
+  const [plant, setPlant] = useState({});
   const [newPlant, setNewPlant] = useState({
     name: "",
-    type: "",
-    lastWatered: ""
-    // go back to cat collector and look for the "add new feeding form for the calendar"
+    last_fertilized: "",
+    last_watered: ""
   });
+  
+  useEffect(() => {
+    async function fetchPlant (){
+      const res = await plantAPI.getPlantById(id)
+      console.log('res', res)
+      setPlant(res)
+      setNewPlant({
+        name: plant.name,
+        last_fertilized: plant.last_fertilized,
+        last_watered: plant.last_watered
+      })
+    }
+    fetchPlant()
+  }, [])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewPlant({ ...newPlant, [name]: value });
   };
 
-  async function handleSubmit() {
+  async function handleSubmit(e) {
     try {
       e.preventDefault();
-      await plantAPI.create(newPlant)
-      setNewPlant({ name: "", type: "", lastWatered: "" });
+      const res =edit ? await plantAPI.updatePlant({...newPlant}, plant.id) : await plantAPI.createPlant({...newPlant})
+      console.log(res)
+      setNewPlant({
+        name: "",
+        last_fertilized: "",
+        last_watered: ""
+      });
       navigate("/plants")
     } catch (err) {
       console.error("Error: ", err)
@@ -30,8 +54,7 @@ export default function PlantForm({ onAddPlant }) {
 
   return (
     <form onSubmit={handleSubmit} className="plant-form">
-      <h2>Add a New Plant</h2>
-      <input
+      {edit ? <h2>Edit {plant.name}'s Details</h2> : <h2>Add a Plant</h2>}      <input
         type="text"
         name="name"
         placeholder="Plant Name"
@@ -40,21 +63,21 @@ export default function PlantForm({ onAddPlant }) {
         required
       />
       <input
-        type="text"
-        name="type"
+        type="date"
+        name="last_fertilized"
         placeholder="Plant Type"
-        value={newPlant.type}
+        value={newPlant.last_fertilized}
         onChange={handleInputChange}
         required
       />
       <input
         type="date"
-        name="lastWatered"
-        value={newPlant.lastWatered}
+        name="last_watered"
+        value={newPlant.last_watered}
         onChange={handleInputChange}
         required
       />
-      <button type="submit" className="add-plant-btn">Add New Plant</button>
+      <button type="submit" className="add-plant-btn">{edit ? 'Update Plant' : 'Add New Plant'}</button>
     </form>
   );
 }

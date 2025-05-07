@@ -51,6 +51,8 @@ function App() {
               <Route path="/sidebar" element={<Sidebar />} />
               <Route path="/home" element={<HomePage />} />
               <Route path="/plants/:id" element={<PlantDetailPage/>} />
+              <Route path="/plants/:id/edit" element={<PlantForm edit={true}/>} />
+
               {/* <Route path="*" element={<>404 not found</>} /> */}
           </>
           : <>
