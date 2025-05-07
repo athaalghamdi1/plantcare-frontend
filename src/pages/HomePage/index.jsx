@@ -73,7 +73,7 @@ export default function Home() {
         
         <div className="home-nav">
           <button onClick={handleAddPlant}>Add Plants</button>
-          <button onClick={handleAddReminder}>Add Reminder</button>
+          {/* <button onClick={handleAddReminder}>Add Reminder</button> */}
         </div>
       </div>
     </div>

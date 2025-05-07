@@ -27,3 +27,8 @@
 .navbar ul li a:hover {
   color: #ddd;
 }
+
+.navbar button {
+  margin-top: 0;
+  margin-left: 15px;
+}
