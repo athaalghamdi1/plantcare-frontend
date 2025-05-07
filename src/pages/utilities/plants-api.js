@@ -8,17 +8,16 @@ export const createPlant = async (plantData) => {
 export const getPlants = async () => {
   return sendRequest(url, "GET");
 };
+
 export async function getPlantById(plantId) {
   return sendRequest(`${url}${plantId}/`)
 };
-// export const createReminder = async (reminderData) => {
-//   const response = await fetch(`${API_URL}reminders/`, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(reminderData),
-//   });
-//   return await response.json();
-// };
 
+
+export async function updatePlant(formData, plantId) {
+  return sendRequest(`${url}${plantId}/`, "PUT", formData)
+}
+
+export async function deletePlant(plantId) {
+  return sendRequest(`${url}${plantId}/`, "DELETE")
+}
