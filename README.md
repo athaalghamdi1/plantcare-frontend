@@ -1,21 +1,4 @@
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-# plantcare-frontend
-# PlantCare App (Full Stack)
-
-This is the full stack for the PlantCare web application, which includes both the backend and frontend. The backend is built with Django and Django REST Framework, and the frontend is developed using React. The app features user authentication via JWT, full CRUD operations for managing plants, and a smart recommendation system.
-
-## About the App
+## PlantCare App
 
 PlantCare is an interactive web application designed to help plant enthusiasts take care of their plants more efficiently. The app allows users to manage their plant collection, receive personalized care recommendations, and track plant health over time. With features like plant watering reminders and the ability to upload plant photos, PlantCare aims to create an intuitive and personalized experience for every plant owner.
 
