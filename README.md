@@ -21,6 +21,11 @@ PlantCare is an interactive web application designed to help plant enthusiasts t
 - RESTful API ready for integration with React frontend
 - Interactive frontend with React
 
+## User Stories
+- As a user, I want to be able to create an account or log in.
+- As a user, I want to add a new plant.
+- As a user, I want to edit the details of a plant.
+
 ## Tech Stack
 
 ### Backend:
@@ -116,12 +121,11 @@ The frontend interacts with the backend using the following API endpoints:
 
 The app provides personalized plant care tips. Future updates will include image-based disease detection using AI to further enhance plant health analysis.
 
-## Future Plans
+## Ice Box
 
 - AI-based image disease detection
 - Reminder system for watering and care
 - Multi-language support
-- Mobile app (PWA)
 
 ## Local:   http://localhost:5173/
 ## Author

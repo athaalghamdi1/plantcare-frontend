@@ -60,7 +60,7 @@ export default function Home() {
       <div className="dashboard">
         <h1>Welcome to Your PlantCare</h1>
         <div className="recommendations">
-          <h2>Daily Recommendations</h2>
+          <h2> Recommendations</h2>
           <p>Based on your plants, here are today's tips!</p>
             {recs.length > 0 ? (
               recs.map((rec) => (
