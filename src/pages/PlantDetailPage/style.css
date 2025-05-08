@@ -1,0 +1,74 @@
+/* PlantDetailPage.css */
+
+.plant-detail-container {
+  max-width: 600px;
+  margin: 60px auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+  text-align: center;
+}
+
+.plant-name {
+  font-size: 28px;
+  color: #2d6a4f;
+  margin-bottom: 20px;
+}
+
+.plant-image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  border-radius: 12px;
+  margin-bottom: 25px;
+  background-color: #f0f0f0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+}
+
+.plant-info h3 {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #344e41;
+}
+
+.plant-info h3 span {
+  color: #081c15;
+  font-weight: normal;
+}
+
+.plant-actions {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 12px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #40916c;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #2d6a4f;
+}
+
+.delete-btn {
+  background-color: #d00000;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #9b0000;
+}

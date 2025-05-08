@@ -1,34 +1,38 @@
 .navbar {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background-color: #83a58499;
+  padding: 10px 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  background-color: rgba(33, 49, 33, 0.8); /* نفس لون الأخضر الداكن لكن بشفافية */
-  backdrop-filter: blur(6px);  padding: 20px 0;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
 }
 
 .navbar ul {
-  list-style-type: none;
+  list-style: none;
+  display: flex;
+  gap: 20px;
   margin: 0;
   padding: 0;
-  display: flex;
 }
 
-.navbar ul li {
-  margin: 0 20px;
-}
-
-.navbar ul li a {
+.navbar li a {
   text-decoration: none;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.navbar ul li a:hover {
-  color: #ddd;
+  color: #2d3748;
+  font-weight: 500;
 }
 
 .navbar button {
-  margin-top: 0;
-  margin-left: 15px;
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.navbar button:hover {
+  background-color: #c53030;
 }

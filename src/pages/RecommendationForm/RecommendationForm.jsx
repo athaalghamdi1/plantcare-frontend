@@ -1,7 +1,7 @@
-import React from "react";
-import { useState, useEffect } from "react";
-import * as plantAPI from "../utilities/plants-api.js"
-import * as recAPI from "../utilities/recs-api.js"
+import React, { useState, useEffect } from "react";
+import * as plantAPI from "../utilities/plants-api.js";
+import * as recAPI from "../utilities/recs-api.js";
+import "./style.css";
 
 export default function RecommendationForm() {
   const [plants, setPlants] = useState([]);
@@ -10,40 +10,36 @@ export default function RecommendationForm() {
     plant: "",
   });
 
-  console.log(formData)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-async function handleSubmit(e) {
+  async function handleSubmit(e) {
     try {
       e.preventDefault();
-      // console.log(formData)
-      const res = await recAPI.createRec({...formData})
-      console.log(res)
+      const res = await recAPI.createRec({ ...formData });
+      console.log(res);
       setFormData({
         symptom: "",
         plant: "",
       });
-      navigate("/plants")
     } catch (err) {
-      console.error("Error: ", err)
+      console.error("Error: ", err);
     }
-  };
+  }
 
   useEffect(() => {
     async function getAllPlants() {
-        try {
-            const plantData = await plantAPI.getPlants()
-            console.log(plantData)
-            setPlants(plantData)
-        } catch (err) {
-            console.log(err);
-        }
+      try {
+        const plantData = await plantAPI.getPlants();
+        setPlants(plantData);
+      } catch (err) {
+        console.log(err);
+      }
     }
-    if (plants.length === 0) getAllPlants()
-}, [])
+    if (plants.length === 0) getAllPlants();
+  }, []);
 
   const recPairs = [
     { symptom: "Yellow leaves", solution: "Reduce watering frequency." },
@@ -59,29 +55,39 @@ async function handleSubmit(e) {
   ];
 
   return (
-    <div>
-      <h2>📊 Plant Analysis</h2>
-      {/* <p>[Analysis form under development]</p> */}
-      <form onSubmit={handleSubmit}>
-        <select name="symptom" 
+    <div className="recommendation-container">
+      
+      <h2 className="title">Plant Analysis</h2>
+      <form onSubmit={handleSubmit} className="recommendation-form">
+        <select
+          name="symptom"
           value={formData.symptom}
-          onChange={handleChange} 
+          onChange={handleChange}
+          className="select-field"
         >
           <option value="">Select Symptom</option>
-          {recPairs.map(rec => (
-            <option value={rec.symptom}>{rec.symptom}</option>
+          {recPairs.map((rec) => (
+            <option key={rec.symptom} value={rec.symptom}>
+              {rec.symptom}
+            </option>
           ))}
         </select>
-        <select name="plant" 
+        <select
+          name="plant"
           value={formData.plant}
-          onChange={handleChange} 
+          onChange={handleChange}
+          className="select-field"
         >
           <option value="">Select Plant</option>
-          {plants.map(plant => (
-            <option value={plant.id}>{plant.name}</option>
+          {plants.map((plant) => (
+            <option key={plant.id} value={plant.id}>
+              {plant.name}
+            </option>
           ))}
         </select>
-        <button type="submit"> add symptom </button>
+        <button type="submit" className="submit-btn">
+          Add Symptom
+        </button>
       </form>
     </div>
   );

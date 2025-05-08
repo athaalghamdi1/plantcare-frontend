@@ -19,19 +19,26 @@ export default function PlantForm({edit}) {
   });
   
   useEffect(() => {
-    async function fetchPlant (){
-      const res = await plantAPI.getPlantById(id)
-      console.log('res', res)
-      setPlant(res)
-      setNewPlant({
-        name: plant.name,
-        last_fertilized: plant.last_fertilized,
-        last_watered: plant.last_watered
-      })
+    async function fetchPlant() {
+      if (!edit) return;
+      try {
+        const res = await plantAPI.getPlantById(id);
+        setPlant(res);
+        setNewPlant({
+          name: res.name || "",
+          image: res.image || "",
+          last_fertilized: res.last_fertilized || "",
+          last_watered: res.last_watered || ""
+        });
+      } catch (error) {
+        console.error("Error fetching plant:", error);
+      }
     }
-    fetchPlant()
-  }, [])
-
+  
+    fetchPlant();
+  }, [edit, id]);
+  
+  
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setNewPlant({ ...newPlant, [name]: value });

@@ -36,17 +36,22 @@ const PlantDetailPage = () => {
         navigate(`/plants/${plant.id}/edit`)
     };
 
-    return(
-        <div>
-            <h1>Name: {plant.name}</h1>
-            <img src={plant.image} alt={plant.name} className="plant-image" />
-            <h3>Fertilizing Frequency: {plant.fertilizing_frequency_days}</h3>
-            <h3>Last Fertilized: {plant.last_fertilized}</h3>
-            <h3>Last Watered: {plant.last_watered}</h3>
-            <button className="edit-btn" onClick={() => handleEditPlant(plant.id)}>Edit</button>
-            <button className="delete-btn" onClick={() => handleDeletePlant(plant.id)}>Delete</button>
+    return (
+        <div className="plant-detail-container">
+          <h1 className="plant-name">🌿 {plant.name}</h1>
+          <img src={plant.image} alt={plant.name} className="plant-image" />
+          <div className="plant-info">
+            <h3>🧪 Fertilizing Frequency: <span>{plant.fertilizing_frequency_days} days</span></h3>
+            <h3>🌱 Last Fertilized: <span>{plant.last_fertilized}</span></h3>
+            <h3>💧 Last Watered: <span>{plant.last_watered}</span></h3>
+          </div>
+          <div className="plant-actions">
+            <button className="edit-btn" onClick={handleEditPlant}>Edit</button>
+            <button className="delete-btn" onClick={handleDeletePlant}>Delete</button>
+          </div>
         </div>
-    );
+      );
+      
 
 }
 export default PlantDetailPage;

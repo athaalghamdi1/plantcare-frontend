@@ -12,7 +12,6 @@
   align-items: center;
 }
 
-/* النصف الأيسر */
 .auth-left {
   background-color: #fff;
   flex-direction: column;
@@ -32,10 +31,9 @@
   font-size: 14px;
 }
 
-/* النصف الأيمن */
 .auth-right {
   background-color: #1e3c2f;
-  background-image: url('leaves.png'); /* استخدم صورة أوراق مناسبة */
+  background-image: url('leaves.png');
   background-repeat: no-repeat;
   background-position: top right;
   background-size: contain;
@@ -44,7 +42,6 @@
   align-items: center;
 }
 
-/* صندوق تسجيل الدخول */
 .auth-box {
   background-color: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
